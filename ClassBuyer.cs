@@ -9,16 +9,18 @@ namespace ConsoleApp3
     class Buyer
     {
         private List<Product> _products = new List<Product>();
+        private Random _random;
 
         public int Money { get; private set; }
 
         public Buyer(int money)
         {
+            _random = new Random();
             Money = money;
             CreateProducts();
         }
 
-        public void WriteOffMoneyForPurchase()
+        public void WriteOffMoney()
         {
             Money -= CalculatePriceForProducts();
         }
@@ -42,25 +44,11 @@ namespace ConsoleApp3
 
         public void RemoveProduct()
         {
-            Random rand = new Random();
-
-            var product = _products[rand.Next(0, _products.Count)];
+            var product = _products[_random.Next(0, _products.Count)];
 
             Console.WriteLine("Покупатель убрал из корзины:" + product.ProductName);
 
             _products.Remove(product);
-        }
-
-        private void CreateProducts()
-        {
-            Random rand = new Random();
-
-            int countProducts = rand.Next(1, 6);
-
-            for (int i = 0; i < countProducts; i++)
-            {
-                _products.Add(new Product((ProductName)(rand.Next(0, 6)), rand.Next(2, 10)));
-            }
         }
 
         public void ShowProducts()
@@ -68,6 +56,16 @@ namespace ConsoleApp3
             foreach (var product in _products)
             {
                 product.ShowInfo();
+            }
+        }
+
+        private void CreateProducts()
+        {
+            int countProducts = _random.Next(1, 6);
+
+            for (int i = 0; i < countProducts; i++)
+            {
+                _products.Add(new Product((ProductName)(_random.Next(0, 6)), _random.Next(2, 10)));
             }
         }
     }

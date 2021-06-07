@@ -60,7 +60,7 @@ namespace ConsoleApp3
             if (buyer.Money >= priceForProducts)
             {
                 _money += priceForProducts;
-                buyer.WriteOffMoneyForPurchase();
+                buyer.WriteOffMoney();
                 Console.WriteLine("Все хорошо, покупатель оплатил весь товар, магазин заработал - " + priceForProducts + "$");
             }
             else
@@ -87,7 +87,7 @@ namespace ConsoleApp3
                 else
                 {
                     _money += priceForProducts;
-                    buyer.WriteOffMoneyForPurchase();
+                    buyer.WriteOffMoney();
                     Console.WriteLine("У покупателя хватило денег только на:\n");
                     buyer.ShowProducts();
                     Console.WriteLine("Вы все оплатили, всеГО хорошеГО, ждем Вас снова)\nмагазин заработал - " + priceForProducts + "$");
@@ -97,7 +97,7 @@ namespace ConsoleApp3
 
         private void CreatBuyers()
         {
-            Random rand = new();
+            Random rand = new Random();
             int countBuyers = 3;
 
             for (int i = 0; i < countBuyers; i++)
