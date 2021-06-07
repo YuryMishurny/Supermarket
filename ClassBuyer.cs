@@ -25,15 +25,9 @@ namespace ConsoleApp3
 
         public int GetCountProducts()
         {
-            int countProducts = 0;
-
-            foreach (var product in _products)
-            {
-                countProducts++;
-            }
-
-            return countProducts;
+            return _products.Count;
         }
+
         public int CalculatePriceForProducts()
         {
             int priceForProducts = 0;
@@ -45,6 +39,7 @@ namespace ConsoleApp3
 
             return priceForProducts;
         }
+
         public void RemoveProduct()
         {
             Random rand = new Random();
@@ -54,8 +49,8 @@ namespace ConsoleApp3
             Console.WriteLine("Покупатель убрал из корзины:" + product.ProductName);
 
             _products.Remove(product);
-
         }
+
         private void CreateProducts()
         {
             Random rand = new Random();
